@@ -12,7 +12,7 @@ source venv/bin/activate # On Windows, use "venv\Scripts\activate"
 ```
 ### Step 2: Installing Required Packages
 ```txt
-pip install fastapi[all] sqlalchemy alembic
+pip install fastapi[all] uvicorn[standart] sqlalchemy alembic
 ```
 ### Step 3: Creating the database
 **How that we have defined our model, let`s create the SQLite database and tables**
