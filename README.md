@@ -35,9 +35,6 @@ target_metadata = Base.metadata
 [alembic]
 script_location = alembic
 
-[alembic.ext]
-sourceless = false
-
 sqlalchmey.url = sqlite:///./sqlite3.db # Replace with your database URL if different
 ```
 ### Step 6: Generating a Migration
