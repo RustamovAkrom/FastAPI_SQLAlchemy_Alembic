@@ -34,7 +34,11 @@ def get_all_items(name: Optional[str] = None, db: Session = Depends(get_db)):
     if name:
         items = []
         db_item = ItemRepo.fetch_by_name(db, name)
+        
+        if not db_item:
+            raise HTTPException(status_code=404, detail="Items not found with the given NAME")
         items.append(db_item)
+
         return items
     
     else:
@@ -48,9 +52,10 @@ def get_item(item_id: int, db: Session = Depends(get_db)):
     """
     
     db_item = ItemRepo.fetch_by_id(db, item_id)
-    if db_item is None:
+    print(db_item)
+    if not db_item:
         raise HTTPException(status_code=404, detail="Item not found with the given ID")
-    raise db_item
+    return db_item
 
 
 @router.delete('/items/{item_id}', tags=['item'])

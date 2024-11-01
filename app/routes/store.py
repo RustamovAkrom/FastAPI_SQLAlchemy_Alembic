@@ -32,8 +32,11 @@ def get_all_stores(name: Optional[str] = None,db: Session = Depends(get_db)):
     if name:
         stores =[]
         db_store = StoreRepo.fetch_by_name(db,name)
-        print(db_store)
+        
+        if not db_store:
+            raise HTTPException(status_code=404, detail="Stores not found with the given NAME")
         stores.append(db_store)
+
         return stores
     else:
         return StoreRepo.fetch_all(db)
